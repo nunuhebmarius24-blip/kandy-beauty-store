@@ -27,7 +27,9 @@ function App() {
   const [saving,setSaving] = useState(false)
 
   const refreshProducts = async () => {
-    const {data,error} = await supabase.from('products').select('*').eq('published',true).order('created_at',{ascending:false})
+    let query = supabase.from('products').select('*').order('created_at',{ascending:false})
+    if(!adminAllowed) query = query.eq('published',true)
+    const {data,error} = await query
     if(error) setNotice('Could not load products: '+error.message)
     else setProducts(data || [])
     setLoading(false)
