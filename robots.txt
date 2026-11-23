@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nunuhebmarius24-blip.github.io/kandy-beauty-store/sitemap.xml
