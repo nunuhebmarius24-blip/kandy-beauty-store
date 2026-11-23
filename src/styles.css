@@ -37,3 +37,11 @@
 
 /* Brand introduction section */
 .brand-story{margin:25px 9% 65px;padding:55px 7%;display:grid;grid-template-columns:180px 1fr;gap:45px;align-items:center;background:linear-gradient(120deg,#fbf1f7,#f4eafa);border:1px solid #f0e3ef}.brand-story-mark{width:145px;height:145px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#efd8ed,#fff4f8);color:#b77da8;font:italic 86px 'Playfair Display';box-shadow:0 15px 35px #a7789820}.brand-story-copy{max-width:680px}.brand-story-copy h2{font:600 38px 'Playfair Display';margin:10px 0}.brand-story-copy h2 em{color:#bd80aa;font-weight:500}.brand-story-copy p{font-size:13px;line-height:1.85;color:#837987;max-width:650px}.brand-story-copy .outline{margin-top:10px}@media(max-width:700px){.brand-story{margin:10px 5% 45px;padding:32px 8%;grid-template-columns:1fr;gap:20px}.brand-story-mark{width:90px;height:90px;font-size:55px}.brand-story-copy h2{font-size:31px}}
+
+
+/* Founder credit */
+.founder-credit{display:flex;flex-direction:column;gap:5px;margin:22px 0 10px;padding:17px 20px;border-left:2px solid #bd83b3;background:#ffffffa8;max-width:320px}
+.founder-credit span{font-size:9px;letter-spacing:.2em;color:#a879a0}
+.founder-credit strong{font:500 23px 'Playfair Display',serif;color:#302538}
+.founder-credit small{font-size:10px;color:#958397;letter-spacing:.04em}
+.founder-credit-large{margin:28px 0;max-width:390px}
