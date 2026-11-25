@@ -93,3 +93,14 @@
 .pink-banner .primary{background:#fff;color:#8d547a}
 .pink-banner .primary:hover{background:#f7e8f2}
 @media(max-width:700px){.hero-art{background-position:center;height:330px;margin-top:10px}.intro{padding:65px 18px 35px}.pink-banner{background-position:center}}
+
+
+/* Fix founder portrait: source image has a grey lower portion, so frame only its intact upper area */
+.brand-story-photo-wrap{height:320px;min-height:0;align-self:center}
+.brand-story-photo{height:320px;min-height:0;object-fit:cover;object-position:center top}
+.about-founder-photo{height:250px;object-fit:cover;object-position:center top}
+@media(max-width:700px){
+  .brand-story-photo-wrap{height:235px;min-height:0}
+  .brand-story-photo{height:235px;min-height:0}
+  .about-founder-photo{height:210px;width:min(100%,280px);object-position:center top}
+}
