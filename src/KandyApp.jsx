@@ -65,7 +65,8 @@ function App() {
     const lines = cart.map(x=>({product_id:x.id,quantity:x.qty}))
     const {data,error} = await supabase.rpc('place_kandy_order',{p_customer_name:customer.name.trim(),p_town:customer.town.trim(),p_note:customer.note||'',p_items:lines})
     if(error){notify(error.message);return}
-    const msg = 'Hello KANDY BEAUTY! I placed order '+data.order_id+'. Total: '+money(data.total)+'. Please confirm payment and delivery details.'
+    const itemLines = cart.map(x=>'• '+x.name+(x.shade?' ('+x.shade+')':'')+' × '+x.qty+' — '+money(Number(x.price)*x.qty)).join('\n')
+    const msg = 'Hello KANDY BEAUTY! I placed order '+data.order_id+'.\n\nCustomer: '+customer.name.trim()+'\nTown: '+customer.town.trim()+'\n\nORDER ITEMS\n'+itemLines+'\n\nTotal: '+money(data.total)+(customer.note.trim()?'\nNote: '+customer.note.trim():'')+'\n\nPlease confirm payment and delivery details.'
     window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank')
     setCart([]);setCustomer({name:'',town:'',note:''});await refreshProducts();notify('Order saved! Our team will confirm with you on WhatsApp.')
   }
