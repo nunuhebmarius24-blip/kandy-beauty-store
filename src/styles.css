@@ -80,3 +80,16 @@
 .cart-icon{display:block;width:30px;height:30px;overflow:visible;color:#171717}
 .bag-icon{position:relative;display:grid;place-items:center}
 .bag-icon b{right:-5px;top:-5px}
+
+
+/* KANDY campaign photography backgrounds */
+.hero-art{background-size:cover;background-position:center;border-radius:4px;isolation:isolate;box-shadow:0 20px 55px rgba(70,35,58,.14)}
+.hero-art:before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(35,20,30,.04),rgba(35,20,30,.16));z-index:-1}
+.hero-art .orb,.hero-art .tube,.hero-art .floating{display:none}
+.hero-art .art-caption{color:#fff;text-shadow:0 1px 8px #302538}
+.intro{background-size:cover;background-position:center;padding:85px 20px 45px}
+.pink-banner{background-size:cover;background-position:center 42%;color:#fff}
+.pink-banner>span,.pink-banner h2,.pink-banner h2 em{color:#fff;text-shadow:0 2px 12px rgba(30,15,25,.25)}
+.pink-banner .primary{background:#fff;color:#8d547a}
+.pink-banner .primary:hover{background:#f7e8f2}
+@media(max-width:700px){.hero-art{background-position:center;height:330px;margin-top:10px}.intro{padding:65px 18px 35px}.pink-banner{background-position:center}}
