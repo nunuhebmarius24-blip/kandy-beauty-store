@@ -52,3 +52,20 @@
 .brand-story-photo{display:block;width:100%;height:100%;min-height:420px;object-fit:cover;object-position:center 30%}
 .about-founder-photo{display:block;width:min(100%,340px);height:390px;object-fit:cover;object-position:center 30%;border-radius:180px 180px 18px 18px;margin:28px auto 32px;box-shadow:0 16px 40px rgba(91,45,70,.12)}
 @media(max-width:700px){.brand-story-photo-wrap{width:100%;min-height:320px}.brand-story-photo{min-height:320px}.about-founder-photo{height:340px;width:min(100%,280px)}}
+
+
+/* Minimal centered header with slide-down hamburger navigation */
+.site-header{height:112px;padding:0 6.5%;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:20;border-bottom:1px solid #f0edf0}
+.menu-toggle{width:42px;height:42px;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:7px}
+.menu-toggle span{display:block;width:29px;height:2px;background:#171717;border-radius:2px}
+.brand-centered{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:5px;font:400 34px/1 'Playfair Display',serif;letter-spacing:.13em;color:#171717;padding:8px}
+.brand-centered i{font:400 12px/1 'DM Sans',sans-serif;font-style:normal;letter-spacing:.42em;color:#796d79;margin-left:.42em}
+.bag-icon{position:relative;width:44px;height:44px;display:grid;place-items:center;padding:6px}
+.bag-outline{position:relative;display:block;width:25px;height:24px;border:2px solid #171717;border-radius:2px;margin-top:7px}
+.bag-outline:before{content:'';position:absolute;width:10px;height:11px;border:2px solid #171717;border-bottom:0;border-radius:9px 9px 0 0;left:5.5px;top:-12px}
+.bag-icon b{position:absolute;right:-2px;top:-3px;background:#bda9f5;color:#fff;border-radius:50%;width:29px;height:29px;display:grid;place-items:center;font-size:12px;font-weight:600}
+.menu-scrim{position:fixed;inset:112px 0 0;background:#21192535;z-index:21;cursor:default}
+.menu-panel{position:absolute;left:0;top:100%;width:min(360px,86vw);background:#fff;box-shadow:0 18px 35px #30253818;padding:18px 28px 25px;display:flex;flex-direction:column;gap:0;z-index:22;border-top:1px solid #f2edf2}
+.menu-panel button{padding:18px 4px;text-align:left;border-bottom:1px solid #f0eaf0;font:400 20px 'Playfair Display',serif;color:#302538}
+.menu-panel button.active,.menu-panel button:hover{color:#bd80aa}
+@media(max-width:700px){.announcement{display:none}.site-header{height:88px;padding:0 5%}.brand-centered{font-size:29px}.brand-centered i{font-size:10px}.menu-scrim{inset:88px 0 0}.menu-panel{width:min(330px,86vw)}}
