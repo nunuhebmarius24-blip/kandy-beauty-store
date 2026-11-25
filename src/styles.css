@@ -133,3 +133,34 @@
   .brand-story-photo{min-height:0}
   .about-founder-photo{height:auto;width:min(100%,280px)}
 }
+
+
+/* Final founder portrait crop: original file is 320x426; real portrait ends at y=253. */
+.brand-story-photo-wrap{
+  width:min(100%,420px) !important;
+  height:auto !important;
+  min-height:0 !important;
+  aspect-ratio:320 / 253 !important;
+  overflow:hidden !important;
+}
+.brand-story-photo{
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  object-fit:cover !important;
+  object-position:top center !important;
+}
+.about-founder-photo{
+  display:block !important;
+  width:min(100%,340px) !important;
+  height:auto !important;
+  aspect-ratio:320 / 253 !important;
+  object-fit:cover !important;
+  object-position:top center !important;
+}
+@media(max-width:700px){
+  .brand-story-photo-wrap{width:100% !important;aspect-ratio:320 / 253 !important;height:auto !important}
+  .brand-story-photo{height:100% !important;min-height:0 !important}
+  .about-founder-photo{width:min(100%,280px) !important;height:auto !important;aspect-ratio:320 / 253 !important}
+}
