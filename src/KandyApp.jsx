@@ -63,11 +63,15 @@ function App() {
     if(!customer.name.trim()||!customer.town.trim()){notify('Please add your name and town first.');return}
     if(!cart.length){notify('Your bag is empty.');return}
     const lines = cart.map(x=>({product_id:x.id,quantity:x.qty}))
+    // Open the WhatsApp tab during the click gesture so iPhone Safari does not block it after the async order save.
+    const whatsappWindow = window.open('about:blank','_blank')
     const {data,error} = await supabase.rpc('place_kandy_order',{p_customer_name:customer.name.trim(),p_town:customer.town.trim(),p_note:customer.note||'',p_items:lines})
-    if(error){notify(error.message);return}
+    if(error){if(whatsappWindow)whatsappWindow.close();notify(error.message);return}
     const itemLines = cart.map(x=>'• '+x.name+(x.shade?' ('+x.shade+')':'')+' × '+x.qty+' — '+money(Number(x.price)*x.qty)).join('\n')
     const msg = 'Hello KANDY BEAUTY! I placed order '+data.order_id+'.\n\nCustomer: '+customer.name.trim()+'\nTown: '+customer.town.trim()+'\n\nORDER ITEMS\n'+itemLines+'\n\nTotal: '+money(data.total)+(customer.note.trim()?'\nNote: '+customer.note.trim():'')+'\n\nPlease confirm payment and delivery details.'
-    window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank')
+    const whatsappUrl = 'https://wa.me/'+WA+'?text='+encodeURIComponent(msg)
+    if(whatsappWindow)whatsappWindow.location.href=whatsappUrl
+    else window.location.href=whatsappUrl
     setCart([]);setCustomer({name:'',town:'',note:''});await refreshProducts();notify('Order saved! Our team will confirm with you on WhatsApp.')
   }
   async function adminLogin(e){
