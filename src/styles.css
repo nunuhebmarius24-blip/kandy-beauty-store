@@ -69,3 +69,5 @@
 .menu-panel button{padding:18px 4px;text-align:left;border-bottom:1px solid #f0eaf0;font:400 20px 'Playfair Display',serif;color:#302538}
 .menu-panel button.active,.menu-panel button:hover{color:#bd80aa}
 @media(max-width:700px){.announcement{display:none}.site-header{height:88px;padding:0 5%}.brand-centered{font-size:29px}.brand-centered i{font-size:10px}.menu-scrim{inset:88px 0 0}.menu-panel{width:min(330px,86vw)}}
+
+/* Final header deployment trigger */
