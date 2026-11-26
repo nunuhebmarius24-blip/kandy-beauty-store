@@ -62,11 +62,18 @@ function App() {
   async function checkout(){
     if(!customer.name.trim()||!customer.phone.trim()||!customer.town.trim()){notify('Please add your name, phone number and town first.');return}
     if(!cart.length){notify('Your bag is empty.');return}
-    const lines = cart.map(x=>({product_id:x.id,quantity:x.qty}))
-    // Open the WhatsApp tab during the click gesture so iPhone Safari does not block it after the async order save.
+    const validCart = cart.filter(x => /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(String(x.id)) && Number.isInteger(Number(x.qty)) && Number(x.qty) > 0)
+    if(validCart.length !== cart.length){
+      setCart(validCart)
+      if(!validCart.length){notify('Your bag had invalid saved items. Please add products again.');return}
+      notify('Removed invalid saved bag items. Please review your bag and try again.')
+      return
+    }
+    const lines = validCart.map(x=>({product_id:x.id,quantity:Number(x.qty)}))
+    // Open WhatsApp during the click gesture so iPhone Safari does not block it after the async save.
     const whatsappWindow = window.open('about:blank','_blank')
     const {data,error} = await supabase.rpc('place_kandy_order',{p_customer_name:customer.name.trim(),p_customer_phone:customer.phone.trim(),p_town:customer.town.trim(),p_note:customer.note||'',p_items:lines})
-    if(error){if(whatsappWindow)whatsappWindow.close();notify(error.message);return}
+    if(error){if(whatsappWindow)whatsappWindow.close();notify('Order could not be saved: '+error.message);return}
     const itemLines = cart.map(x=>'• '+x.name+(x.shade?' ('+x.shade+')':'')+' × '+x.qty+' — '+money(Number(x.price)*x.qty)).join('\n')
     const msg = 'Hello KANDY BEAUTY! I placed order '+data.order_id+'.\n\nCustomer: '+customer.name.trim()+'\nTown: '+customer.town.trim()+'\n\nORDER ITEMS\n'+itemLines+'\n\nTotal: '+money(data.total)+(customer.note.trim()?'\nNote: '+customer.note.trim():'')+'\n\nPlease confirm payment and delivery details.'
     const whatsappUrl = 'https://wa.me/'+WA+'?text='+encodeURIComponent(msg)
